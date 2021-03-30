@@ -1,5 +1,7 @@
 #include "../include/main.h"
 
+long startTime;
+
 void setup()
 {
   //stop();
@@ -25,6 +27,7 @@ void setup()
   while (!digitalRead(button_pin))
     ;
   digitalWrite(led_pin, LOW);
+  startTime = millis();
 
   // Set random seed
   randomSeed(analogRead(A1));
@@ -34,7 +37,7 @@ void loop()
 {
   delay(random(1000, 5000)); // wait 1-5 seconds per round
 
-  switch (6)
+  switch (1) // #### SELECT TEST WITH THIS VALUE ####
   {
   case 1:
     lightReactionTest();
@@ -56,5 +59,13 @@ void loop()
     break;
   default:
     break;
+  }
+
+  // End Test after 2 minutes
+  if ((millis() - startTime) >= 120000)
+  {
+    digitalWrite(led_pin, HIGH);
+    Serial.println("TEST COMPLETE");
+    stop();
   }
 }

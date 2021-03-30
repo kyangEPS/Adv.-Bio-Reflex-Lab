@@ -41,7 +41,7 @@ unsigned int testCount;
 float average;
 float slowest = 0;
 float fastest = 60000; // Inially set fastest to 1 minute
-bool dataCopyMode = false;
+bool dataCopyMode = true;
 
 // Methods
 void printResults(float rTime)
